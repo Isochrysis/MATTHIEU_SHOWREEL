@@ -1,7 +1,14 @@
+/*
 import * as THREE from '/node_modules/three/build/three.module.js';
 import gsap from '/node_modules/gsap/index.js';
 import BezierEasing from '/node_modules/bezier-easing/src/index.js';
 import {GLTFLoader} from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js'
+*/
+
+import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
+import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js';
+import gsap from 'https://unpkg.com/gsap@3.8.0/gsap/index.js';
+import BezierEasing from 'https://unpkg.com/bezier-easing@2.1.0/bezier-easing/src/index.js';
 
 
 window.addEventListener('resize', () =>
