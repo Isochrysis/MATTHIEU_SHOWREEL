@@ -4,11 +4,15 @@ import gsap from '/node_modules/gsap/index.js';
 
 import {GLTFLoader} from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js'
 */
-//import BezierEasing from '/node_modules/bezier-easing/src/index.js';
+import BezierEasing from '/node_modules/bezier-easing/src/index.js';
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js';
 import gsap from 'https://unpkg.com/gsap@3.8.0/index.js';
-//import {BezierEasing} from 'https://unpkg.com/bezier-easing@2.1.0/src/index.js';
+//import * as bezier from 'https://unpkg.com/bezier-easing@2.1.0/src/index.js';
+
+
+
+
 
 
 window.addEventListener('resize', () =>
@@ -234,7 +238,7 @@ const raycaster = new THREE.Raycaster();
 window.addEventListener('mousemove',e=>
 {
 
-  /*
+  
   e.preventDefault();
   var easing = BezierEasing(0.8, 0, 0.2, 1);
   const mouseX = easing(e.clientX/window.innerWidth);
@@ -245,7 +249,7 @@ window.addEventListener('mousemove',e=>
   const mouseY = e.clientY/window.innerHeight;
 
   renderer.render(scene, camera);
-  */
+  
 });
 
 
