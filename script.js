@@ -1,25 +1,12 @@
-/*
-import * as THREE from '/node_modules/three/build/three.module.js';
-import gsap from '/node_modules/gsap/index.js';
-
-import {GLTFLoader} from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js'
-*/
-import BezierEasing from '/node_modules/bezier-easing/src/index.js';
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js';
 import gsap from 'https://unpkg.com/gsap@3.8.0/index.js';
-//import * as bezier from 'https://unpkg.com/bezier-easing@2.1.0/src/index.js';
-
-
-
-
-
 
 window.addEventListener('resize', () =>
 {
     // Update sizes
-    //sizes.width = window.innerWidth
-    //sizes.height = window.innerHeight
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
 
     // Update camera
     camera.updateProjectionMatrix()
@@ -29,30 +16,17 @@ window.addEventListener('resize', () =>
     renderer.setSize( window.innerWidth, window.innerHeight );
 });
 
-
-
-
 // Scène
   const scene = new THREE.Scene();
-//
-
 
 
 // Caméra 75 pour l'angle de la caméra, et on prend la taille de la page, enfin les paramètre de champs de caméra
-
   const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.setZ(30); // Positionnement de la caméra
   camera.position.setY(0);
   camera.position.setX(0);
   
-
-
 // Light 
-
-    // Crée une lumière ambiante (Les lumières doivent être ajouté à la scene)
-      //const light = new THREE.AmbientLight(0XFFFFFF, 1);
-
-
     // Crée une lumière à un point fixe
     const light = new THREE.DirectionalLight("rgb(220, 20, 60)", 1.5)
     light.position.x = 0;
@@ -60,8 +34,6 @@ window.addEventListener('resize', () =>
     light.position.z =30;
     light.target.position.set(0,0,0);
     light.castShadow = true;
-    //light.shadowDarkness = 0.1;
-
 
     light.shadow.mapSize.width = 2000; // default
     light.shadow.mapSize.height = 200; // default
@@ -80,8 +52,6 @@ window.addEventListener('resize', () =>
     light4.position.z =30;
     light4.target.position.set(0,0,0);
     light4.castShadow = true;
-    //light4.shadowDarkness = 0.1;
-
 
     light4.shadow.mapSize.width = 2000; // default
     light4.shadow.mapSize.height = 200; // default
@@ -98,17 +68,12 @@ window.addEventListener('resize', () =>
 
 
 // Créer et importer un objet a partir d'un fichier gltf
-
-
   const gltfLoader = new GLTFLoader(); //Création du loader
   
-
   gltfLoader.load('MATTHIEU_SHOWREEL.gltf', (gltf) => {
     gltf.scene.scale.set(15,15,15)
     scene.add(gltf.scene);
 
-
-  
     // permet d'appliquer la fonction d'ombre au objets du du fichier gltf
     gltf.scene.traverse( function( node ) {
       if ( node.isMesh ) { 
@@ -120,8 +85,6 @@ window.addEventListener('resize', () =>
   }); 
 
 
-
-
 // Les objet 3D sont composé d'une 'forme' (geometry), et d'un 'habillage' (material) ensemble il forme un MESH
 
     // Création de la forme ici un tore
@@ -129,10 +92,7 @@ window.addEventListener('resize', () =>
       const geometry3 = new THREE.IcosahedronBufferGeometry(1.5,0);
       const geometry4 = new THREE.CylinderBufferGeometry(0.6,0.6,2,15);
       const geometry5 = new THREE.TetrahedronBufferGeometry(1,0);
-
       const geometry2 =new THREE.PlaneBufferGeometry(500,150,100,100);
-    //
-
 
     // Définition de l'habillage
       // on peut spécifier la couleur de l'objet ici
@@ -149,8 +109,6 @@ window.addEventListener('resize', () =>
       material2.shininess = 30;
       material2.color = new THREE.Color("rgb(200, 220, 200)")
 
-
-
     const object = [];
 
     // Création du MESH avec comme paramètre la forme et l'habillage
@@ -162,7 +120,7 @@ window.addEventListener('resize', () =>
       plane.position.y =30;
       plane.position.z =-45;
   
-    for(var i=0; i< 10;i++){
+    for(var i=0; i< 13;i++){
       for(var x=3;x<=5;x++){
         const scaleNumb = Math.floor(Math.random()*3)+0.8;
         
@@ -174,55 +132,35 @@ window.addEventListener('resize', () =>
         do {
           var positionX = Math.floor(Math.random() * 160) + -80;
           var positionY = Math.floor(Math.random() * 80) + -40;
-          //console.log("X = " +positionX);
-          //console.log("Y = " + positionY);
         } while ( (positionX > -5 && positionX < 5) || (positionY > -10 && positionY < 28) ); 
 
-
-        
 
         formeDeco.position.x = positionX;
         formeDeco.position.y = positionY;
         formeDeco.position.z = positionZ;
         formeDeco.rotation.x = (Math.random()*10);
         formeDeco.rotation.y = (Math.random()*15);
-        //console.log(x);
         formeDeco.userData.clicable = true;
         formeDeco.userData.speed = false;
         scene.add(formeDeco);
         object.push(formeDeco);
-        //console.log(object.length);
-
       }
     };
     
-
-
-
-
-
-
-
 //Création du renderer, sorte de container qui affiche la scene 3D et qui est relier au canvas que nous avons créé en HTML
   const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg'),
     antialias : true,
-    
-    //alpha :true // Fond transparent
   });
 
   // On définie la taille 
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
 
-
-
   // Mettre des ombres
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.shadowMapSoft = true;
- 
-  
  
 scene.add(light);
 scene.add(plane);
@@ -234,23 +172,21 @@ scene.rotateX(-0.2);
 const mouse =new THREE.Vector2();
 const raycaster = new THREE.Raycaster();
 
+const easeInOutCirc = (nombre)=>{
+  if(nombre < 0.5){
+    return (1 - Math.sqrt(1 - Math.pow(2 * nombre, 2))) / 2;
+  }else{
+    return (Math.sqrt(1 - Math.pow(-2 * nombre + 2, 2)) + 1) / 2;
+  }
+}
 
 window.addEventListener('mousemove',e=>
 {
-
-  
-  e.preventDefault();
-  var easing = BezierEasing(0.8, 0, 0.2, 1);
-  const mouseX = easing(e.clientX/window.innerWidth);
-
+  let mouseX = easeInOutCirc(e.clientX/window.innerWidth);
   light.position.x = 30 -(mouseX*60 );
   light4.position.x = -30 +(mouseX *60);
-  
-  const mouseY = e.clientY/window.innerHeight;
-
-  renderer.render(scene, camera);
-  
 });
+
 
 
 window.addEventListener('mousemove', onMouseClick);
@@ -267,15 +203,11 @@ function onMouseClick(event){
 
     if(intersects[i].object.userData.clicable){
       let tl = gsap.timeline()
-      
       tl.to(intersects[i].object.rotation,{z:2, duration :1});
     }
   };
 };
   
-
-
-
 function animate(){
   requestAnimationFrame(animate);
   for ( let i = 0, il = object.length; i < il; i ++ ) {
