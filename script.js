@@ -7,7 +7,7 @@ import {GLTFLoader} from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js
 //import BezierEasing from '/node_modules/bezier-easing/src/index.js';
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js';
-//import gsap from 'https://unpkg.com/gsap@3.8.0/index.js';
+import gsap from 'https://unpkg.com/gsap@3.8.0/index.js';
 //import {BezierEasing} from 'https://unpkg.com/bezier-easing@2.1.0/src/index.js';
 
 
@@ -262,9 +262,9 @@ function onMouseClick(event){
   for(let i=0; i<intersects.length; i++){
 
     if(intersects[i].object.userData.clicable){
-      //let tl = gsap.timeline()
+      let tl = gsap.timeline()
       
-      //tl.to(intersects[i].object.rotation,{z:2, duration :1});
+      tl.to(intersects[i].object.rotation,{z:2, duration :1});
     }
   };
 };
