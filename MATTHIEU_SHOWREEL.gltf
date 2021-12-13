@@ -1,0 +1,121 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Text.001",
+            "rotation" : [
+                0.6532814502716064,
+                0.27059805393218994,
+                -0.27059802412986755,
+                0.6532815098762512
+            ],
+            "scale" : [
+                0.9690696001052856,
+                0.9690696001052856,
+                0.9690696001052856
+            ],
+            "translation" : [
+                0.3320445418357849,
+                0.20565927028656006,
+                0.2841203212738037
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "Material.001",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.7431797981262207,
+                    0.7431797981262207,
+                    0.7431797981262207,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.2545454502105713
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Text.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 85209,
+            "max" : [
+                1.5557169914245605,
+                1.0567607879638672,
+                0.20984256267547607
+            ],
+            "min" : [
+                -1.5560121536254883,
+                -1.9469010829925537,
+                -0.20984649658203125
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 85209,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5125,
+            "count" : 208020,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 1022508,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1022508,
+            "byteOffset" : 1022508
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 832080,
+            "byteOffset" : 2045016
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 2877096,
+            "uri" : "MATTHIEU_SHOWREEL.bin"
+        }
+    ]
+}
