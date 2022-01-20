@@ -215,6 +215,12 @@ window.addEventListener('mousemove',e=>
   light4.position.x = -30 +(mouseX *60);
 });
 
+document.getElementById('myRange').addEventListener('input',e=>{
+  let mouseX = easeInOutCirc((document.getElementById('myRange').value/100));
+  light.position.x = 30 -(mouseX*60 );
+  light4.position.x = -30 +(mouseX *60);
+})
+
 
 
 window.addEventListener('mousemove', onMouseHover);
