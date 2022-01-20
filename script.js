@@ -2,29 +2,23 @@ import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js';
 import gsap from 'https://unpkg.com/gsap@3.8.0/index.js';
 
-window.addEventListener('resize', () =>
-{
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
 
-    // Update camera
-    camera.updateProjectionMatrix()
 
-    // Update renderer
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-});
+
 
 // Scène
   const scene = new THREE.Scene();
 
+  
+
 
 // Caméra 75 pour l'angle de la caméra, et on prend la taille de la page, enfin les paramètre de champs de caméra
-  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(70, 1.7, 0.1, 1000);
   camera.position.setZ(30); // Positionnement de la caméra
   camera.position.setY(0);
   camera.position.setX(0);
+
+  
   
 // Light 
     // Crée une lumière à un point fixe
@@ -71,7 +65,7 @@ window.addEventListener('resize', () =>
   const gltfLoader = new GLTFLoader(); //Création du loader
   
   gltfLoader.load('MATTHIEU_SHOWREEL.gltf', (gltf) => {
-    gltf.scene.scale.set(15,15,15)
+    gltf.scene.scale.set(15,15,15);
     scene.add(gltf.scene);
 
     // permet d'appliquer la fonction d'ombre au objets du du fichier gltf
@@ -83,6 +77,22 @@ window.addEventListener('resize', () =>
 
   } );
   }); 
+
+
+
+
+  
+window.addEventListener('resize', () =>
+{
+    // Update camera
+    camera.updateProjectionMatrix()
+
+    console.log(window.devicePixelRatio)
+
+    // Update renderer
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth,  heightCanvas() );
+});
 
 
 // Les objet 3D sont composé d'une 'forme' (geometry), et d'un 'habillage' (material) ensemble il forme un MESH
@@ -149,13 +159,29 @@ window.addEventListener('resize', () =>
     
 //Création du renderer, sorte de container qui affiche la scene 3D et qui est relier au canvas que nous avons créé en HTML
   const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#bg'),
+    canvas: document.getElementById('bg'),
     antialias : true,
   });
 
+  console.log();
+
   // On définie la taille 
   renderer.setPixelRatio( window.devicePixelRatio );
-  renderer.setSize( window.innerWidth, window.innerHeight );
+
+  
+  const heightCanvas = () =>{
+    if(window.innerWidth/window.innerHeight <=1){
+      return window.innerWidth;
+    }else{
+      return window.innerHeight;
+    }
+  };
+
+  
+
+  renderer.setSize( window.innerWidth, heightCanvas() );
+
+  
 
   // Mettre des ombres
   renderer.shadowMap.enabled = true;
@@ -167,6 +193,8 @@ scene.add(plane);
 scene.add(light2);
 scene.add(light4);
 scene.rotateX(-0.2);
+
+
 
 
 const mouse =new THREE.Vector2();
@@ -189,9 +217,9 @@ window.addEventListener('mousemove',e=>
 
 
 
-window.addEventListener('mousemove', onMouseClick);
+window.addEventListener('mousemove', onMouseHover);
 
-function onMouseClick(event){
+function onMouseHover(event){
 
   mouse.x =(event.clientX/window.innerWidth)*2-1;
   mouse.y = -(event.clientY/window.innerHeight)*2+1;
